@@ -19,42 +19,44 @@ function mouseM() {
     el = document.querySelector('.active')
     // el=e.target
     // if(el.localName !== 'span')return
-
     // console.log(el)
     // el = e.target,
     vt = e.clientY - el.parentElement.offsetTop
     hz = e.clientX - el.parentElement.offsetLeft
     w = shape.offsetWidth
     h = shape.offsetHeight
-
-    if ((hz >= 0 && hz <= w)) {
-        switch (el.id) {
-            case "top":
-                // t =  (hz / w * 100).toFixed();
-                // el.style.left = t + '%';
-                el.style.left = (hz / w * 100).toFixed() + '%';
-                break;
-            case "bottom":
-                // b = (hz / w * 100).toFixed();
-                // el.style.left = b + '%';
-                el.style.left = (hz / w * 100).toFixed() + '%';
-                break;
-        }
+    vt = vt < 0 ? 0 : vt
+    vt = vt > h ? h : vt
+    hz = hz < 0 ? 0 : hz
+    hz = hz > w ? w : hz
+    // if ((hz >= 0 && hz <= w)) {
+    switch (el.id) {
+        case "top":
+            o = (hz / w * 100).toFixed();
+            el.style.left = o + '%';
+            // el.style.left = (hz / w * 100).toFixed() + '%';
+            break;
+        case "bottom":
+            o = (hz / w * 100).toFixed();
+            el.style.left = o + '%';
+            // el.style.left = (hz / w * 100).toFixed() + '%';
+            break;
     }
-    if ((vt >= 0 && vt <= h)) {
-        switch (el.id) {
-            case "right":
-                // r = (vt / h * 100).toFixed();
-                // el.style.top = r + '%';
-                el.style.top = (vt / h * 100).toFixed() + '%';
-                break;
-            case "left":
-                // l = (vt / h * 100).toFixed();
-                // el.style.top = l + '%';
-                el.style.top = (vt / h * 100).toFixed() + '%';
-                break;
-        }
+    // }
+    // if ((vt >= 0 && vt <= h)) {
+    switch (el.id) {
+        case "right":
+            o = (vt / h * 100).toFixed();
+            el.style.top = o + '%';
+            // el.style.top = (vt / h * 100).toFixed() + '%';
+            break;
+        case "left":
+            o = (vt / h * 100).toFixed();
+            el.style.top = o + '%';
+            // el.style.top = (vt / h * 100).toFixed() + '%';
+            break;
     }
+    // }
 
     l = ($$('#left').offsetTop / h * 100).toFixed()
     r = ($$('#right').offsetTop / h * 100).toFixed()
