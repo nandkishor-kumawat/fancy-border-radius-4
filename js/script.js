@@ -1,63 +1,87 @@
-let topE = document.getElementById("top")
-let rightE = document.getElementById("right")
-let bottomE = document.getElementById("bottom")
-let leftE = document.getElementById("left")
-let box = document.getElementById("box")
-
 let selecters = document.querySelectorAll('.selecter');
+let shape = $$('#shape')
 
 selecters.forEach(el => {
-    el.addEventListener('mousedown', mouseDownHandle)
+    el.addEventListener('mousedown', mouseD)
 })
 
-function mouseDownHandle(e) {
-    e.target.addEventListener('mouseup', mouseUpHandle)
-    // e.target.addEventListener('mousemove', mouseMoveHandle)
-    // document.removeEventListener('mouseup', mouseUpHandleD)
-    document.removeEventListener('mousemove', mouseMoveHandleD(e.target))
+function mouseD() {
+    // event.target.addEventListener('mousemove', mouseM)
+    // event.target.addEventListener('mouseup', mouseU)
+    event.target.classList.add('active')
+    document.addEventListener('mousemove', mouseM)
+    document.addEventListener('mouseup', mouseU)
 }
 
-function mouseMoveHandleD(t) {
-    // ele = e.target
-    // let id = ele.getAttribute('id')
-    // cl(t)
-    // cl(id)
-    switch (t.id) {
-        case "top":
-            t.style.left = event.clientX - t.parentNode.clientWidth + '%';
-            // cl($$('#'+id).parentNode.offsetX)
-            break;
-        case "right":
-            ele.style.top = t + '%';
-            cl(t)
-            break;
-        case "bottom":
-            ele.style.left = l + '%';
-            break;
-        case "left":
-            ele.style.top = t + '%';
-            break;
+function mouseM() {
+    let e, vt, hz, w, h, l, r, b, t;
+    e = event
+    el = document.querySelector('.active')
+    // el=e.target
+    // if(el.localName !== 'span')return
+
+    console.log(el)
+    // el = e.target,
+    vt = e.clientY - el.parentElement.offsetTop
+    hz = e.clientX - el.parentElement.offsetLeft
+    w = shape.offsetWidth
+    h = shape.offsetHeight
+
+    if ((hz >= 0 && hz <= w)) {
+        switch (el.id) {
+            case "top":
+                // t =  (hz / w * 100).toFixed();
+                // el.style.left = t + '%';
+                el.style.left = (hz / w * 100).toFixed() + '%';
+                break;
+            case "bottom":
+                // b = (hz / w * 100).toFixed();
+                // el.style.left = b + '%';
+                el.style.left = (hz / w * 100).toFixed() + '%';
+                break;
+        }
+    }
+    if ((vt >= 0 && vt <= h)) {
+        switch (el.id) {
+            case "right":
+                // r = (vt / h * 100).toFixed();
+                // el.style.top = r + '%';
+                el.style.top = (vt / h * 100).toFixed() + '%';
+                break;
+            case "left":
+                // l = (vt / h * 100).toFixed();
+                // el.style.top = l + '%';
+                el.style.top = (vt / h * 100).toFixed() + '%';
+                break;
+        }
     }
 
+    l = ($$('#left').offsetTop / h * 100).toFixed()
+    r = ($$('#right').offsetTop / h * 100).toFixed()
+    t = ($$('#top').offsetLeft / w * 100).toFixed()
+    b = ($$('#bottom').offsetLeft / w * 100).toFixed()
+    setBorder(l, r, t, b)
 
 }
 
-function mouseUpHandle(e) {
-    e.target.removeEventListener('mouseup', mouseUpHandle)
-    // e.target.removeEventListener('mousemove', mouseMoveHandle)
-    // document.removeEventListener('mouseup', mouseUpHandleD)
-    document.removeEventListener('mousemove', mouseMoveHandleD)
+function mouseU() {
+    // event.target.removeEventListener('mousemove', mouseM)
+    // event.target.removeEventListener('mouseup', mouseU)
+    document.removeEventListener('mousemove', mouseM)
+    document.removeEventListener('mouseup', mouseU)
+    document.querySelector('.active').classList.remove('active')
+    // console.log('t')
 }
 
-function cl(t) {
-    console.log(t)
-}
+function setBorder(l=50, r=50, t=50, b=50) {
 
+    console.log(l,r,t,b)
+    let bdr = `${t}% ${100 - t}% ${100 - b}% ${b}% / ${l}% ${r}% ${100 - r}%  ${100 - l}% `;
+
+    shape.style.borderRadius = bdr;
+    $$('.bdr span').innerText = bdr;
+}
+setBorder()
 function $$(s) {
-    return document.querySelectorAll(s)
+    return document.querySelector(s)
 }
-
-// document.addEventListener('mousemove',(e)=>{
-//     cl(e)
-//     cl(e.offsetX)
-// })
