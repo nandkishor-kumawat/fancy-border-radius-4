@@ -38,7 +38,7 @@
   height: 1rem;
   background: #fff;
   /* border: 1px solid #fff; */
-  transition: box-shadow 0.2s ease-out;
+  transition: box-shadow 0.2s cubic-bezier(0.215, 0.610, 0.355, 1);
 }
 
 #top {
@@ -97,8 +97,10 @@
   font-size: 1em;
   cursor: pointer;
   border: none;
+  transition: all .2s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .bdr button:hover{
   background-color: #147e26;
+  color: white;
 }
