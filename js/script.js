@@ -6,21 +6,17 @@ selecters.forEach(el => {
 })
 
 function mouseD() {
-    // event.target.addEventListener('mousemove', mouseM)
-    // event.target.addEventListener('mouseup', mouseU)
     event.target.classList.add('active')
     document.addEventListener('mousemove', mouseM)
     document.addEventListener('mouseup', mouseU)
+    document.body.style.setProperty('user-select','none')
 }
 
 function mouseM() {
     let e, vt, hz, w, h, l, r, b, t;
     e = event
     el = document.querySelector('.active')
-    // el=e.target
-    // if(el.localName !== 'span')return
-    // console.log(el)
-    // el = e.target,
+
     vt = e.clientY - el.parentElement.offsetTop
     hz = e.clientX - el.parentElement.offsetLeft
     w = shape.offsetWidth
@@ -29,7 +25,7 @@ function mouseM() {
     vt = vt > h ? h : vt
     hz = hz < 0 ? 0 : hz
     hz = hz > w ? w : hz
-    // if ((hz >= 0 && hz <= w)) {
+
     switch (el.id) {
         case "top":
             o = (hz / w * 100).toFixed();
@@ -42,8 +38,7 @@ function mouseM() {
             // el.style.left = (hz / w * 100).toFixed() + '%';
             break;
     }
-    // }
-    // if ((vt >= 0 && vt <= h)) {
+
     switch (el.id) {
         case "right":
             o = (vt / h * 100).toFixed();
@@ -56,7 +51,7 @@ function mouseM() {
             // el.style.top = (vt / h * 100).toFixed() + '%';
             break;
     }
-    // }
+    
 
     l = ($$('#left').offsetTop / h * 100).toFixed()
     r = ($$('#right').offsetTop / h * 100).toFixed()
@@ -67,17 +62,13 @@ function mouseM() {
 }
 
 function mouseU() {
-    // event.target.removeEventListener('mousemove', mouseM)
-    // event.target.removeEventListener('mouseup', mouseU)
     document.removeEventListener('mousemove', mouseM)
     document.removeEventListener('mouseup', mouseU)
     document.querySelector('.active').classList.remove('active')
-    // console.log('t')
+    document.body.style.removeProperty('user-select')
 }
 
 function setBorder(l = 50, r = 50, t = 50, b = 50) {
-
-    // console.log(l,r,t,b)
     let bdr = `${t}% ${100 - t}% ${100 - b}% ${b}% / ${l}% ${r}% ${100 - r}%  ${100 - l}% `;
 
     shape.style.borderRadius = bdr;
