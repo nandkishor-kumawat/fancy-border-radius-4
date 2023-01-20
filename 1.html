@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fancy Border Radius</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        input {
+            position: absolute;
+            width: 100%;
+            -webkit-appearance: none;
+            appearance: none;
+            background: transparent;
+        }
+
+        input::-ms-thumb {
+            height: 20px;
+            background: green;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- <div class="main">
+        <div class="box" id="box">
+            <div id="shape"></div>
+            <span s="l" class="selecter" id="left"></span>
+            <span s="t" class="selecter" id="top"></span>
+            <span s="r" class="selecter" id="right"></span>
+            <span s="b" class="selecter" id="bottom"></span>
+        </div>
+    </div> -->
+
+    <div class="main">
+        <div class="box" id="box">
+            <div id="shape"></div>
+            <input type="range" s="l" min="0" max="100" class="selecter" id="left" value="30">
+            <input type="range" s="t" min="0" max="100" class="selecter" id="top" value="30">
+            <input type="range" s="r" min="0" max="100" class="selecter" id="right" value="70">
+            <input type="range" s="b" min="0" max="100" class="selecter" id="bottom" value="30">
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <!-- <script src="js/script.js"></script> -->
+
+    <script>
+        let selecters = document.querySelectorAll('.selecter');
+        let shape = document.getElementById('shape')
+        selecters.forEach((ele) => {
+            ele.addEventListener('mousedown', mouseDown)
+        })
+
+        function changeBorder() {
+            let t, r, b, l
+            t = document.getElementById('top').value
+            b = document.getElementById('bottom').value
+            l = document.getElementById('left').value
+            r = document.getElementById('right').value
+            shape.style.borderRadius = `${t}% ${100 - t}% ${100 - b}% ${b}% / ${l}% ${100 - r}% ${r}%  ${100 - l}% `
+        } changeBorder()
+
+        function mouseUp(e) {
+            e.target.removeEventListener('mousemove', changeBorder)
+            e.target.removeEventListener('mouseup', mouseUp)
+        }
+        function mouseDown(e) {
+            e.target.addEventListener('mousemove', changeBorder)
+            e.target.addEventListener('mouseup', mouseUp)
+        }
+    </script>
+</body>
+
+</html>
