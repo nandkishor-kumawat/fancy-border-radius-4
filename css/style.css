@@ -10,6 +10,8 @@
   align-items: center;
   justify-content: center;
   background-color: rgb(31, 29, 29);
+  flex-direction: column;
+  color: white;
 }
 
 .box {
@@ -37,7 +39,6 @@
   background: #fff;
   /* border: 1px solid #fff; */
   transition: box-shadow 0.2s ease-out;
-  will-change: box-shadow;
 }
 
 #top {
@@ -62,4 +63,20 @@
   left: -0.5rem;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.selecter:hover, .selecter:active{
+  background: #0ff;
+  box-shadow: 0 0 0 4px #fff;
+  border: 2px solid #002;
+}
+
+.bdr{
+  margin: 10px;
+  font-size: 20px;
+}
+.bdr span{
+  padding: 8px 12px;
+  background-color: #dadada;
+
 }
