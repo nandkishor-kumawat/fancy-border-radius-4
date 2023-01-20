@@ -20,7 +20,7 @@ function mouseM() {
     // el=e.target
     // if(el.localName !== 'span')return
 
-    console.log(el)
+    // console.log(el)
     // el = e.target,
     vt = e.clientY - el.parentElement.offsetTop
     hz = e.clientX - el.parentElement.offsetLeft
@@ -75,13 +75,18 @@ function mouseU() {
 
 function setBorder(l=50, r=50, t=50, b=50) {
 
-    console.log(l,r,t,b)
+    // console.log(l,r,t,b)
     let bdr = `${t}% ${100 - t}% ${100 - b}% ${b}% / ${l}% ${r}% ${100 - r}%  ${100 - l}% `;
 
     shape.style.borderRadius = bdr;
-    $$('.bdr span').innerText = bdr;
+    $$('.bdr p').innerText = bdr;
+}setBorder()
+
+$$('.bdr button').onclick = e=>{
+    // navigator.clipboard.writeText(e.target.parentElement.innerText.replace('copy',''))
+    navigator.clipboard.writeText(e.target.previousElementSibling.innerText)
 }
-setBorder()
+
 function $$(s) {
     return document.querySelector(s)
 }
