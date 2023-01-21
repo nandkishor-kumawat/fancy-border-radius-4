@@ -9,7 +9,7 @@ function mouseD() {
     event.target.classList.add('active')
     document.addEventListener('mousemove', mouseM)
     document.addEventListener('mouseup', mouseU)
-    document.body.style.setProperty('user-select','none')
+    document.body.style.setProperty('user-select', 'none')
 }
 
 function mouseM() {
@@ -26,30 +26,12 @@ function mouseM() {
     hz = hz < 0 ? 0 : hz
     hz = hz > w ? w : hz
 
-    switch (el.id) {
-        case "top":
-            o = (hz / w * 100).toFixed();
-            el.style.left = o + '%';
-            // el.style.left = (hz / w * 100).toFixed() + '%';
-            break;
-        case "bottom":
-            o = (hz / w * 100).toFixed();
-            el.style.left = o + '%';
-            // el.style.left = (hz / w * 100).toFixed() + '%';
-            break;
-        case "right":
-            o = (vt / h * 100).toFixed();
-            el.style.top = o + '%';
-            // el.style.top = (vt / h * 100).toFixed() + '%';
-            break;
-        case "left":
-            o = (vt / h * 100).toFixed();
-            el.style.top = o + '%';
-            // el.style.top = (vt / h * 100).toFixed() + '%';
-            break;
-    }
+    if (el.classList.contains("hr")) 
+        el.style.left = (hz / w * 100).toFixed() + '%';
     
-
+    if (el.classList.contains("vt")) 
+        el.style.top = (vt / h * 100).toFixed() + '%';
+    
     l = ($$('#left').offsetTop / h * 100).toFixed()
     r = ($$('#right').offsetTop / h * 100).toFixed()
     t = ($$('#top').offsetLeft / w * 100).toFixed()
