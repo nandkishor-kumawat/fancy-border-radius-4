@@ -37,9 +37,6 @@ function mouseM() {
             el.style.left = o + '%';
             // el.style.left = (hz / w * 100).toFixed() + '%';
             break;
-    }
-
-    switch (el.id) {
         case "right":
             o = (vt / h * 100).toFixed();
             el.style.top = o + '%';
