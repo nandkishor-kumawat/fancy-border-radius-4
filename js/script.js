@@ -3,18 +3,21 @@ let shape = $$('#shape')
 
 selecters.forEach(el => {
     el.addEventListener('mousedown', mouseD)
+    el.addEventListener('touchstart', mouseD)
 })
 
 function mouseD() {
     event.target.classList.add('active')
     document.addEventListener('mousemove', mouseM)
     document.addEventListener('mouseup', mouseU)
+    document.addEventListener('touchmove', mouseM)
+    document.addEventListener('touchend', mouseU)
     document.body.style.setProperty('user-select', 'none')
 }
 
 function mouseM() {
     let e, vt, hz, w, h, l, r, b, t;
-    e = event
+    e = event || event.touches[0]
     el = document.querySelector('.active')
 
     vt = e.clientY - el.parentElement.offsetTop
