@@ -65,7 +65,7 @@
   transform: translateY(-50%);
 }
 
-.selecter:hover,
+/* .selecter:hover, */
 .selecter:active,
 .selecter.active {
   background: #0ff;

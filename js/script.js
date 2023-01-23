@@ -17,7 +17,7 @@ function mouseD() {
 
 function mouseM() {
     let e, vt, hz, w, h, l, r, b, t;
-    e = event || event.touches[0]
+    e = event.type == "touchmove" ? event.touches[0] : event
     el = document.querySelector('.active')
 
     vt = e.clientY - el.parentElement.offsetTop
@@ -29,12 +29,12 @@ function mouseM() {
     hz = hz < 0 ? 0 : hz
     hz = hz > w ? w : hz
 
-    if (el.classList.contains("hr")) 
+    if (el.classList.contains("hr"))
         el.style.left = (hz / w * 100).toFixed() + '%';
-    
-    if (el.classList.contains("vt")) 
+
+    if (el.classList.contains("vt"))
         el.style.top = (vt / h * 100).toFixed() + '%';
-    
+
     l = ($$('#left').offsetTop / h * 100).toFixed()
     r = ($$('#right').offsetTop / h * 100).toFixed()
     t = ($$('#top').offsetLeft / w * 100).toFixed()
@@ -46,6 +46,8 @@ function mouseM() {
 function mouseU() {
     document.removeEventListener('mousemove', mouseM)
     document.removeEventListener('mouseup', mouseU)
+    document.removeEventListener('touchmove', mouseM)
+    document.removeEventListener('touchend', mouseU)
     document.querySelector('.active').classList.remove('active')
     document.body.style.removeProperty('user-select')
 }
