@@ -6,6 +6,10 @@ selecters.forEach(el => {
     el.addEventListener('touchstart', mouseD)
 })
 
+document.querySelectorAll('#dimension input').forEach(ele => {
+    ele.oninput = () => setSize()
+})
+
 function mouseD() {
     event.target.classList.add('active')
     document.addEventListener('mousemove', mouseM)
@@ -56,14 +60,27 @@ function setBorder(l = 50, r = 50, t = 50, b = 50) {
     let bdr = `${t}% ${100 - t}% ${100 - b}% ${b}% / ${l}% ${r}% ${100 - r}%  ${100 - l}% `;
 
     shape.style.borderRadius = bdr;
-    $$('.bdr p').innerText = bdr;
+    $$('#code').innerText = bdr;
 } setBorder()
 
-$$('.bdr button').onclick = e => {
+function setSize() {
+    $$('#box').style.width = $$('#width').value + 'px';
+    $$('#box').style.height = $$('#height').value + 'px';
+}
+
+$$('#copy').onclick = e => {
     // navigator.clipboard.writeText(e.target.parentElement.innerText.replace('copy',''))
     navigator.clipboard.writeText(e.target.previousElementSibling.innerText)
+}
+
+$$('#customSize').onclick = () => {
+    $$('#dimension').classList.toggle('visible');
+    setSize()
 }
 
 function $$(s) {
     return document.querySelector(s)
 }
+
+$$('#width').value = box.offsetWidth;
+$$('#height').value = box.offsetHeight;
