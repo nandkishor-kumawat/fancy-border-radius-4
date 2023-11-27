@@ -20,6 +20,7 @@ function mouseD() {
 }
 
 function mouseM() {
+    event.preventDefault();
     let e, vt, hz, w, h, l, r, b, t;
     e = event.type == "touchmove" ? event.touches[0] : event
     el = document.querySelector('.active')
