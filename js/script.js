@@ -19,7 +19,7 @@ function mouseD() {
     document.body.style.setProperty('user-select', 'none')
 }
 
-function mouseM() {
+function mouseM(event) {
     event.preventDefault();
     let e, vt, hz, w, h, l, r, b, t;
     e = event.type == "touchmove" ? event.touches[0] : event
